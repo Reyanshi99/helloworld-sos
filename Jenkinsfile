@@ -26,14 +26,6 @@ pipeline {
         echo '<------------- Unit Testing stopped  --------------->'
       }
     }
-   stage("Scan") {
-          steps {
-              withSonarQubeEnv(installationName: 'sonarqube_token') {
-                 sh '/opt/apache-maven-3.9.4/bin/mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
-              }
-          }
-      }
-
     
 }
 }
