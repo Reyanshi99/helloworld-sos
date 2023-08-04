@@ -15,21 +15,21 @@ pipeline {
       steps {
         echo '<--------------- Building --------------->'
         sh 'printenv'
-        sh 'mvn clean install'
+        sh '/opt/apache-maven-3.9.4/bin/mvn clean install'
         echo '<------------- Build completed --------------->'
       }
     }
     stage('Unit Test') {
       steps {
         echo '<--------------- Unit Testing started  --------------->'
-        sh 'mvn surefire-report:report'
+        sh '/opt/apache-maven-3.9.4/bin/mvn surefire-report:report'
         echo '<------------- Unit Testing stopped  --------------->'
       }
     }
    stage("Scan") {
           steps {
               withSonarQubeEnv(installationName: 'sonarqube_token') {
-                 sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                 sh '/opt/apache-maven-3.9.4/bin/mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
               }
           }
       }
